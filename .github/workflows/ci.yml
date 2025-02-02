@@ -35,8 +35,9 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: main
+          branch: gh-pages
           folder: dist
+          clean: true # Usuwa stare pliki przed wdrożeniem
 
       # Step 6: Validate JSON file
       - name: Validate JSON file
