@@ -9,16 +9,16 @@ const SOUND_CAR_URL = 'sounds/729027.mp3'
 
 const App = () => {
   const [isAnimated, setIsAnimated] = useState(true)
-  const [play] = useSound(SOUND_CAR_URL)
+  const [playCat] = useSound(SOUND_CAR_URL)
 
   return (
     <div>
       <HomePage isAnimated={isAnimated} />
-      <div className='logo'>
+      <div className='logo' onClick={() => playCat()}>
         <img src={logo} alt='Karolina Król logo' />
       </div>
-      <div className='cat' onClick={() => play()}>
-        <img src={kot} alt='cat' onClick={() => play()} />
+      <div className='cat' onClick={() => playCat()}>
+        <img src={kot} alt='cat' onClick={() => playCat()} />
       </div>
       {/* <div className='toggle-animations'>
         <label>

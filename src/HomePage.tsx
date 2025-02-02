@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import DraggableImage from './components/DraggableImage'
+import { motion } from 'framer-motion'
+
 import Bio from './components/Bio'
 
 // Import images correctly using relative paths
@@ -67,21 +69,31 @@ const HomePage: React.FC<HomePageProps> = ({ isAnimated }) => {
   const toggleBurgerMenu = () => {
     setBurgerOpen(!isBurgerOpen)
     // add to burger-menu-container a blur effect if opened
-    const burgerMenuContainer = document.querySelector('.burger-menu-container')
-    if (burgerMenuContainer) {
-      burgerMenuContainer.classList.toggle('blur-open')
-    }
+    // const burgerMenuContainer = document.querySelector('.burger-menu-container')
+    // if (burgerMenuContainer) {
+    //   burgerMenuContainer.classList.toggle('blur-open')
+    // }
   }
 
   const createNav = () => {
     return (
       <header className='navbar'>
-        <div className='burger-menu-container'>
+        <motion.div
+          className='burger-menu-container'
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+        >
           <div className='burger-button' onClick={toggleBurgerMenu}>
             <img src={burgerIcon} alt='burger-menu' width={50} />
           </div>
           {isBurgerOpen && (
-            <div className='menu'>
+            <motion.div
+              // className='burger-menu-container'
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+            >
               {modes.map((mode_) => (
                 <img
                   key={mode_}
@@ -91,9 +103,9 @@ const HomePage: React.FC<HomePageProps> = ({ isAnimated }) => {
                   alt={mode_}
                 />
               ))}
-            </div>
+            </motion.div>
           )}
-        </div>
+        </motion.div>
         <nav></nav>
       </header>
     )

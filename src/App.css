@@ -48,7 +48,7 @@ h2 {
   /* background-color: #ffffff; Background color of navbar */
   /* background: rgba(255, 255, 255, 1); */
   /* backdrop-filter: blur(10px); */
-  width: 100%;
+  /* width: 100%; */
   position: fixed;
   top: 0;
   z-index: 1000;
@@ -89,6 +89,7 @@ h2 {
 
 .cat {
   cursor: pointer;
+  z-index: 299;
 }
 
 .cat img {
@@ -159,20 +160,22 @@ h2 {
   width: 70%;
 }
 
+.burger-menu-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: white;
+  z-index: 200;
+}
+
 @media (min-width: 768px) {
   .burger-menu-container {
     width: 25%;
   }
 }
 
-.burger-menu-container {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-}
-
 .blur-open {
-  backdrop-filter: blur(4px);
+  /* backdrop-filter: blur(4px); */
 }
 
 .artwork-container {
@@ -180,7 +183,7 @@ h2 {
 }
 
 .nav-selected {
-  border-bottom: 4px dotted black;
+  /* border-bottom: 4px dotted black; */
 }
 
 .description-overlay {

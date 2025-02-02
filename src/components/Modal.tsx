@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, PanInfo } from 'framer-motion'
 import './Modal.css'
 import xIcon from './../assets/x.png'
 
@@ -13,6 +13,7 @@ interface ModalProps {
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, description, images = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const carouselItems = images
+  const swipeThreshold = 50 // minimum distance to trigger slide change
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselItems.length)
@@ -20,6 +21,19 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, description, images = []
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + carouselItems.length) % carouselItems.length)
+  }
+
+  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    if (carouselItems.length <= 1) return
+
+    const swipeDistance = info.offset.x
+    if (Math.abs(swipeDistance) > swipeThreshold) {
+      if (swipeDistance > 0) {
+        prevSlide()
+      } else {
+        nextSlide()
+      }
+    }
   }
 
   return (
@@ -41,11 +55,22 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, description, images = []
             <div className='carousel'>
               <motion.div
                 key={currentIndex}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: 0 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className='carousel-item'>
-                <img src={carouselItems[currentIndex]} alt={`Slide ${currentIndex}`} className='carousel-image' />
+                className='carousel-item'
+                drag={carouselItems.length > 1 ? "x" : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.7}
+                onDragEnd={handleDragEnd}
+                style={{ touchAction: 'none' }}>
+                <img
+                  src={carouselItems[currentIndex]}
+                  alt={`Slide ${currentIndex}`}
+                  className='carousel-image'
+                  draggable={false} // Prevent default image dragging
+                />
               </motion.div>
             </div>
 
@@ -60,6 +85,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, description, images = []
               whileTap={{ scale: 0.9 }}>
               <img src={xIcon} className='close-button-img' alt='Close' />
             </motion.button>
+
             {images.length > 1 && (
               <>
                 <motion.button
@@ -75,7 +101,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, description, images = []
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}>
                   Next
-                </motion.button></>
+                </motion.button>
+              </>
             )}
 
             <div className='carousel-counter'>
