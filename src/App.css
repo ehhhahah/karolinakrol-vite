@@ -141,11 +141,15 @@ h2 {
   padding: 10px;
 }
 
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
 .menu-item {
   cursor: pointer;
   padding: 10px;
-  width: 33%;
-  backdrop-filter: brightness(1.3);
+  width: 70%;
 }
 
 @media (min-width: 768px) {
@@ -157,6 +161,10 @@ h2 {
 .burger-menu-container {
   display: flex;
   flex-direction: column;
+}
+
+.blur-open {
+  backdrop-filter: blur(4px);
 }
 
 .artwork-container {

@@ -33,9 +33,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, description, images = []
           onClick={onClose}>
           <motion.div
             className='modal-content'
-            initial={{ y: 100 }}
-            animate={{ y: 0 }}
-            exit={{ y: 100 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ type: 'spring', damping: 20, stiffness: 300 }}
             onClick={(e) => e.stopPropagation()}>
             <div className='carousel'>
@@ -60,20 +60,24 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, description, images = []
               whileTap={{ scale: 0.9 }}>
               <img src={xIcon} className='close-button-img' alt='Close' />
             </motion.button>
-            <motion.button
-              className='prev-button'
-              onClick={prevSlide}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}>
-              Prev
-            </motion.button>
-            <motion.button
-              className='next-button'
-              onClick={nextSlide}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}>
-              Next
-            </motion.button>
+            {images.length > 1 && (
+              <>
+                <motion.button
+                  className='prev-button'
+                  onClick={prevSlide}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}>
+                  Prev
+                </motion.button>
+                <motion.button
+                  className='next-button'
+                  onClick={nextSlide}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}>
+                  Next
+                </motion.button></>
+            )}
+
             <div className='carousel-counter'>
               {currentIndex + 1} / {carouselItems.length}
             </div>

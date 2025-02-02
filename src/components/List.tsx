@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import './List.css'
 import Modal from './Modal' // assuming you have a Modal component
+import getModePicture from '../utils/getModePicture'
 
 const ARTWORK_DATA_URL = '/data/artworkData.json'
 
 type Artwork = {
-  src: string
+  src: string[]
   alt: string
   category: string
   description: string
@@ -53,13 +54,24 @@ const ArtworkList: React.FC = () => {
     setSelectedArtwork(null)
   }
 
+  const getCategoryGroup = (category: string) => {
+    const src = getModePicture(category)
+    return <img
+      className='category-image'
+      key={category}
+      src={src}
+      alt={category}
+      id={category}
+    />
+  }
+
   return (
     <div className='artwork-list'>
       {isLoading && <div>Loading...</div>}
 
       {Object.keys(groupedArtworks).map((category) => (
         <div key={category} className='category-group'>
-          <h2>{category}</h2>
+          {getCategoryGroup(category)}
           <div className='artworks'>
             {groupedArtworks[category].map((artwork, index) => (
               <div
@@ -67,7 +79,8 @@ const ArtworkList: React.FC = () => {
                 className={`artwork-item ${artwork.category}`}
                 onClick={() => handleArtworkClick(artwork)}>
                 <div className='artwork-thumbnail'>
-                  <img src={artwork.src} alt={artwork.alt} loading='lazy' className='thumbnail' />
+                  <img src={artwork.src[0]} alt={artwork.alt} loading='lazy' className='thumbnail' />
+                  <span className='artwork-count'>{artwork.src.length} images</span>
                 </div>
                 <div className='artwork-info'>
                   <span className='artwork-title'>{artwork.alt}</span> -{' '}
@@ -84,7 +97,7 @@ const ArtworkList: React.FC = () => {
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           description={selectedArtwork.description}
-          images={[selectedArtwork.src]}
+          images={selectedArtwork.src}
         />
       )}
     </div>

@@ -4,20 +4,16 @@ import Bio from './components/Bio'
 
 // Import images correctly using relative paths
 import burgerIcon from './assets/burger.png'
-import aboutIcon from './assets/texts/about.png'
-import publicationsIcon from './assets/texts/publications.png'
-import illustrationsIcon from './assets/texts/illustrations.png'
-import postersIcon from './assets/texts/posters.png'
-import homeIcon from './assets/texts/home.png'
 
 import './App.css'
 import List from './components/List'
+import getModePicture from './utils/getModePicture'
 
 // For JSON in public folder
 const ARTWORK_DATA_URL = '/data/artworkData.json'
 
 interface Artwork {
-  src: string
+  src: string[]
   alt: string
   category: string
   description: string
@@ -25,9 +21,7 @@ interface Artwork {
 interface HandleModeChange {
   (newMode: string): void
 }
-interface ModePictureMap {
-  [key: string]: string
-}
+
 
 interface HomePageProps {
   isAnimated: boolean
@@ -58,6 +52,11 @@ const HomePage: React.FC<HomePageProps> = ({ isAnimated }) => {
   }, [])
 
   const handleModeChange: HandleModeChange = (newMode) => {
+    if (!isAnimated) {
+      // move to id of newMode
+      const element = document.getElementById(newMode)
+      element?.scrollIntoView({ behavior: 'smooth' })
+    }
     if (newMode === mode) {
       newMode = 'home'
     }
@@ -67,18 +66,11 @@ const HomePage: React.FC<HomePageProps> = ({ isAnimated }) => {
 
   const toggleBurgerMenu = () => {
     setBurgerOpen(!isBurgerOpen)
-  }
-
-  const getModePicture = (mode: string): string => {
-    const modePictureMap: ModePictureMap = {
-      bio: aboutIcon,
-      posters: postersIcon,
-      illustrations: illustrationsIcon,
-      publications: publicationsIcon,
-      home: homeIcon
+    // add to burger-menu-container a blur effect if opened
+    const burgerMenuContainer = document.querySelector('.burger-menu-container')
+    if (burgerMenuContainer) {
+      burgerMenuContainer.classList.toggle('blur-open')
     }
-
-    return modePictureMap[mode] || homeIcon
   }
 
   const createNav = () => {
@@ -116,7 +108,8 @@ const HomePage: React.FC<HomePageProps> = ({ isAnimated }) => {
           {artwork.map((image, index) => (
             <DraggableImage
               key={index}
-              src={image.src}
+              src={image.src[0]}
+              other_srcs={image.src.slice(1)}
               alt={image.alt}
               description={image.description}
               isVisible={image.category === mode || mode === 'home'}

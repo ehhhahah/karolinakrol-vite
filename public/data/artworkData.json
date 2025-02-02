@@ -49,35 +49,14 @@
   },
   {
     "src": [
-      "https://i.ibb.co/njBxYVy/rosa-vertov-1.jpg"
-    ],
-    "alt": "Artwork 2",
-    "category": "posters",
-    "description": "Lorem ipsum"
-  },
-  {
-    "src": [
-      "https://i.ibb.co/kH76QDm/rosa-vertov-2.jpg"
-    ],
-    "alt": "Artwork 2",
-    "category": "posters",
-    "description": "Lorem ipsum"
-  },
-  {
-    "src": [
-      "https://i.ibb.co/bb0FgWQ/rosa-vertov-3.jpg"
-    ],
-    "alt": "Artwork 2",
-    "category": "posters",
-    "description": "Lorem ipsum"
-  },
-  {
-    "src": [
+      "https://i.ibb.co/njBxYVy/rosa-vertov-1.jpg",
+      "https://i.ibb.co/kH76QDm/rosa-vertov-2.jpg",
+      "https://i.ibb.co/bb0FgWQ/rosa-vertov-3.jpg",
       "https://i.ibb.co/YhL5pzf/rosa-vertov-4.jpg"
     ],
-    "alt": "Artwork 2",
+    "alt": "Rosa Vertov poster",
     "category": "posters",
-    "description": "Lorem ipsum"
+    "description": "Poster for a Rosa Vertov shoegaze band"
   },
   {
     "src": [
@@ -89,98 +68,34 @@
   },
   {
     "src": [
-      "https://i.ibb.co/q1hX2JC/Screenshot-2024-11-05-at-19-33-56.png"
-    ],
-    "alt": "Artwork 2",
-    "category": "posters",
-    "description": "Lorem ipsum"
-  },
-  {
-    "src": [
-      "https://i.ibb.co/njBxYVy/rosa-vertov-1.jpg"
-    ],
-    "alt": "Artwork 2",
-    "category": "posters",
-    "description": "Lorem ipsum"
-  },
-  {
-    "src": [
-      "https://i.ibb.co/pQmh00f/grafika-1080x1080-instagram.jpg"
-    ],
-    "alt": "Artwork 2",
-    "category": "posters",
-    "description": "Lorem ipsum"
-  },
-  {
-    "src": [
+      "https://i.ibb.co/q1hX2JC/Screenshot-2024-11-05-at-19-33-56.png",
+      "https://i.ibb.co/pQmh00f/grafika-1080x1080-instagram.jpg",
       "https://i.ibb.co/T0cF1wt/IMG-0374-copy-2.jpg"
     ],
-    "alt": "Artwork 2",
+    "alt": "Artwork 25",
     "category": "posters",
     "description": "Lorem ipsum"
   },
   {
     "src": [
+      "https://i.ibb.co/FxRxH5x/Screenshot-2024-11-05-at-19-33-25.png",
+      "https://i.ibb.co/3hx65kQ/Screenshot-2024-11-05-at-19-33-04.png",
       "https://i.ibb.co/1fx7Xc2/photka.jpg"
     ],
-    "alt": "Artwork 2",
+    "alt": "From the river to the sea",
     "category": "posters",
-    "description": "Lorem ipsum"
+    "description": "Charity benefit for Palestine poster"
   },
   {
     "src": [
-      "https://i.ibb.co/3hx65kQ/Screenshot-2024-11-05-at-19-33-04.png"
-    ],
-    "alt": "Artwork 2",
-    "category": "posters",
-    "description": "Lorem ipsum"
-  },
-  {
-    "src": [
-      "https://i.ibb.co/FxRxH5x/Screenshot-2024-11-05-at-19-33-25.png"
-    ],
-    "alt": "Artwork 2",
-    "category": "posters",
-    "description": "Lorem ipsum"
-  },
-  {
-    "src": [
-      "https://i.ibb.co/qrbVvmS/IMG-4830.jpg"
-    ],
-    "alt": "Artwork 2",
-    "category": "publications",
-    "description": "Lorem ipsum"
-  },
-  {
-    "src": [
-      "https://i.ibb.co/xYsFDz3/ksiazka-0.jpg"
-    ],
-    "alt": "Artwork 2",
-    "category": "publications",
-    "description": "Lorem ipsum"
-  },
-  {
-    "src": [
-      "https://i.ibb.co/d7P48fc/ksiazka-1.jpg"
-    ],
-    "alt": "Artwork 2",
-    "category": "publications",
-    "description": "Lorem ipsum"
-  },
-  {
-    "src": [
-      "https://i.ibb.co/cQtcKfk/ksiazka-2.jpg"
-    ],
-    "alt": "Artwork 2",
-    "category": "publications",
-    "description": "Lorem ipsum"
-  },
-  {
-    "src": [
+      "https://i.ibb.co/qrbVvmS/IMG-4830.jpg",
+      "https://i.ibb.co/xYsFDz3/ksiazka-0.jpg",
+      "https://i.ibb.co/d7P48fc/ksiazka-1.jpg",
+      "https://i.ibb.co/cQtcKfk/ksiazka-2.jpg",
       "https://i.ibb.co/0q63cNd/ksiazka-3.jpg"
     ],
-    "alt": "Artwork 2",
+    "alt": "Książka 'Trójkącie' Iryny Zahladko",
     "category": "publications",
-    "description": "Lorem ipsum"
+    "description": "Książka 'Trójkącie' Iryny Zahladko dla wydawnictwa SDK"
   }
 ]

@@ -7,13 +7,14 @@ const SOUND_1_URL = 'sounds/469066.wav'
 
 interface DraggableImageProps {
   src: string
+  other_srcs?: string[]
   alt: string
   description: string
   index: number
   isVisible?: boolean
 }
 
-const DraggableImage: React.FC<DraggableImageProps> = ({ src, alt, description, index, isVisible = true }) => {
+const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, description, index, isVisible = true }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
   const [position, setPosition] = useState({ x: 0, y: 0 })
@@ -132,7 +133,7 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, alt, description, 
       )}
 
       <AnimatePresence>
-        {isOpen && <Modal isOpen={isOpen} onClose={handleClose} description={description} images={[src, src]} />}
+        {isOpen && <Modal isOpen={isOpen} onClose={handleClose} description={description} images={[src, ...(other_srcs || [])]} />}
       </AnimatePresence>
     </AnimatePresence>
   )

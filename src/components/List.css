@@ -1,6 +1,10 @@
 .artwork-list {
   width: 100%;
   text-overflow: ellipsis;
+  margin-left: 10px;
+  margin-top: 10px;
+  padding-bottom: 80px;
+  padding-top: 60px;
 }
 
 .artwork-item {
@@ -10,7 +14,8 @@
 }
 
 .artwork-thumbnail img {
-  width: 50px;
+  display: block;
+  width: 70px;
   object-fit: cover;
   margin-right: 10px;
 }
@@ -20,4 +25,23 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.category-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.category-image {
+  width: 180px;
+  height: 100%;
+
+  object-fit: cover;
+  align-self: center;
+}
+
+.artwork-count {
+  font-size: 0.6em;
+  opacity: 0.5;
 }
