@@ -1,30 +1,71 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { motion } from 'motion/react'
+import { motion, AnimatePresence } from 'framer-motion'
 import Modal from './Modal'
+import useSound from 'use-sound'
+
+const SOUND_1_URL = 'sounds/469066.wav'
 
 interface DraggableImageProps {
   src: string
   alt: string
   description: string
+  index: number // Add index prop for staggered animations
+  isVisible?: boolean // For filtering
 }
 
-const DraggableImage: React.FC<DraggableImageProps> = ({ src, alt, description }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+const DraggableImage: React.FC<DraggableImageProps> = ({ src, alt, description, index, isVisible = true }) => {
+  const [isOpen, setIsOpen] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const dragControls = useRef({ startX: 0, startY: 0 })
   const imageRef = useRef<HTMLImageElement>(null)
+  const [play] = useSound(SOUND_1_URL)
 
-  // Random initial position within viewport bounds
+  // Generate unique animation parameters based on index
+  const generateFloatingAnimation = (idx: number) => {
+    const amplitude = 10 + (idx % 3) * 5 // Varies between 10-20px
+    const duration = 3 + (idx % 4) // Varies between 3-6s
+    const delay = (idx % 5) * 0.2 // Staggered start
+
+    const paths = [
+      {
+        // Circular
+        x: [0, amplitude, 0, -amplitude, 0],
+        y: [0, -amplitude, 0, amplitude, 0]
+      },
+      {
+        // Figure-8
+        x: [0, amplitude, 0, -amplitude, 0],
+        y: [0, -amplitude / 2, 0, -amplitude / 2, 0]
+      },
+      {
+        // Diagonal
+        x: [0, amplitude, -amplitude, 0],
+        y: [0, -amplitude, amplitude, 0]
+      }
+    ]
+
+    const selectedPath = paths[idx % paths.length]
+
+    return {
+      ...selectedPath,
+      transition: {
+        duration,
+        delay,
+        repeat: Infinity,
+        ease: 'easeInOut'
+      }
+    }
+  }
+
   useEffect(() => {
-    const randomX = Math.random() * (window.innerWidth - 200) // 200 is approx image width
-    const randomY = Math.random() * (window.innerHeight - 200) // 200 is approx image height
+    const randomX = Math.random() * (window.innerWidth - 200)
+    const randomY = Math.random() * (window.innerHeight - 200)
     setPosition({ x: randomX, y: randomY })
   }, [])
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (e.button === 0) {
-      // Left click only
       setIsDragging(true)
       dragControls.current = {
         startX: e.clientX - position.x,
@@ -36,88 +77,75 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, alt, description }
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (isDragging) {
-      const newX = e.clientX - dragControls.current.startX
-      const newY = e.clientY - dragControls.current.startY
-      setPosition({ x: newX, y: newY })
+      setPosition({
+        x: e.clientX - dragControls.current.startX,
+        y: e.clientY - dragControls.current.startY
+      })
       e.preventDefault()
     }
   }
 
-  const handleMouseUp = () => {
-    setIsDragging(false)
-  }
+  const handleMouseUp = () => setIsDragging(false)
 
-  // Gentle floating animation
-  const floatingAnimation = {
-    y: [0, -10, 0],
-    transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: 'easeInOut'
-    }
+  const handleOpen = () => {
+    setIsOpen(true)
+    // play()
   }
-
-  const handleOpen = () => setIsOpen(true)
-  const handleClose = () => setIsOpen(false)
+  const handleClose = () => {
+    setIsOpen(false)
+    // play()
+  }
 
   return (
-    <>
-      <motion.div
-        style={{
-          position: 'absolute',
-          left: position.x,
-          top: position.y,
-          cursor: isDragging ? 'grabbing' : 'grab',
-          zIndex: isDragging ? 1000 : 1,
-          userSelect: 'none'
-        }}
-        animate={!isDragging ? floatingAnimation : undefined}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-        onClick={handleOpen}
-        onTap={handleOpen}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}>
-        <motion.img
-          ref={imageRef}
-          className='draggable-image'
-          src={src}
-          alt={alt}
-          loading='lazy'
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          draggable={false}
-        />
-        {isDragging && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className='description-overlay'
-            style={{
-              position: 'absolute',
-              bottom: -30,
-              left: 0,
-              background: 'rgba(0,0,0,0.7)',
-              color: 'white',
-              padding: '5px',
-              borderRadius: '4px',
-              fontSize: '12px',
-              maxWidth: '200px',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap'
-            }}>
-            {description}
-          </motion.div>
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          style={{
+            position: 'absolute',
+            left: position.x,
+            top: position.y,
+            cursor: isDragging ? 'grabbing' : 'grab',
+            zIndex: isDragging ? 1000 : 1,
+            userSelect: 'none'
+          }}
+          initial={{ opacity: 0.5, scale: 0.9 }}
+          animate={{
+            opacity: 1,
+            scale: isDragging ? 1.1 : 1,
+            ...(!isDragging ? generateFloatingAnimation(index) : {})
+          }}
+          exit={{
+            scale: 0.9,
+            opacity: 0.5,
+            transition: { duration: 0.5 }
+          }}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          onClick={handleOpen}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          key={index}>
+          <motion.img ref={imageRef} className='draggable-image' src={src} alt={alt} loading='lazy' draggable={false} />
+        </motion.div>
+      )}
+
+      <AnimatePresence>
+        {isOpen && (
+          <Modal isOpen={isOpen} onClose={handleClose} description={description}>
+            <motion.img
+              src={src}
+              alt={alt}
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.5, opacity: 0 }}
+              transition={{ type: 'spring', damping: 15 }}
+            />
+          </Modal>
         )}
-      </motion.div>
-      <Modal isOpen={isOpen} onClose={handleClose} description={description}>
-        <img src={src} alt={alt} />
-      </Modal>
-    </>
+      </AnimatePresence>
+    </AnimatePresence>
   )
 }
 

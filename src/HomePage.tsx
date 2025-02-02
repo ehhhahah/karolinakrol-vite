@@ -114,11 +114,16 @@ const HomePage: React.FC = () => {
       {createNav()}
       {mode === 'bio' && <Bio />}
       <div className='artwork-container'>
-        {artwork
-          .filter((item) => item.category === mode || mode === 'home')
-          .map((image, index) => (
-            <DraggableImage key={index} src={image.src} alt={image.alt} description={image.description} />
-          ))}
+        {artwork.map((image, index) => (
+          <DraggableImage
+            key={index}
+            src={image.src}
+            alt={image.alt}
+            description={image.description}
+            isVisible={image.category === mode || mode === 'home'}
+            index={index}
+          />
+        ))}
       </div>
     </div>
   )

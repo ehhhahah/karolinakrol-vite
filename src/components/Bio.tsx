@@ -1,7 +1,7 @@
 import React from 'react'
 
-const contact = 'assets/texts/contact.png'
-const logo = 'assets/texts/logo.png'
+import logo from './../assets/texts/logo.png'
+import contact from './../assets/texts/contact.png'
 
 const Bio: React.FC = () => {
   return (

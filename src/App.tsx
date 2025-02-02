@@ -7,7 +7,6 @@ const App = () => {
   return (
     <div>
       <HomePage />
-
       <div className='logo'>
         <img src={logo} alt='Karolina Król logo' />
       </div>
