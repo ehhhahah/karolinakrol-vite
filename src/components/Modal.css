@@ -1,0 +1,50 @@
+/* src/components/Modal.css */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+    align-items: normal;
+  }
+  
+  .modal-content {
+    margin: 20px;
+    /* border-radius: 5px; */
+    /* position: relative; */
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 48px;
+    cursor: pointer;
+    color: black;
+  }
+
+.modal-content img {
+  box-shadow: 0px 0px 40px 2px black;
+}
+
+@media (orientation: portrait) {
+  .modal-content img {
+    width: 90vw;
+    height: auto;
+  }
+}
+
+@media (orientation: landscape) {
+  .modal-content img {
+    height: 90vh;
+    width: auto;
+  }
+}
