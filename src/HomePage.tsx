@@ -11,6 +11,7 @@ import postersIcon from './assets/texts/posters.png'
 import homeIcon from './assets/texts/home.png'
 
 import './App.css'
+import List from './components/List'
 
 // For JSON in public folder
 const ARTWORK_DATA_URL = '/data/artworkData.json'
@@ -27,15 +28,12 @@ interface HandleModeChange {
 interface ModePictureMap {
   [key: string]: string
 }
-const modePictureMap: ModePictureMap = {
-  bio: aboutIcon,
-  posters: postersIcon,
-  illustrations: illustrationsIcon,
-  publications: publicationsIcon,
-  home: homeIcon
+
+interface HomePageProps {
+  isAnimated: boolean
 }
 
-const HomePage: React.FC = () => {
+const HomePage: React.FC<HomePageProps> = ({ isAnimated }) => {
   const modes: string[] = ['home', 'bio', 'posters', 'illustrations', 'publications']
   const [mode, setMode] = useState<string>('home')
   const [artwork, setArtwork] = useState<Artwork[]>([])
@@ -113,18 +111,22 @@ const HomePage: React.FC = () => {
     <div id='home-page'>
       {createNav()}
       {mode === 'bio' && <Bio />}
-      <div className='artwork-container'>
-        {artwork.map((image, index) => (
-          <DraggableImage
-            key={index}
-            src={image.src}
-            alt={image.alt}
-            description={image.description}
-            isVisible={image.category === mode || mode === 'home'}
-            index={index}
-          />
-        ))}
-      </div>
+      {isAnimated ? (
+        <div className='artwork-container'>
+          {artwork.map((image, index) => (
+            <DraggableImage
+              key={index}
+              src={image.src}
+              alt={image.alt}
+              description={image.description}
+              isVisible={image.category === mode || mode === 'home'}
+              index={index}
+            />
+          ))}
+        </div>
+      ) : (
+        <List />
+      )}
     </div>
   )
 }

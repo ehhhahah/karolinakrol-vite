@@ -5,7 +5,7 @@ import contact from './../assets/texts/contact.png'
 
 const Bio: React.FC = () => {
   return (
-    <div id='text-panel'>
+    <div className='text-panel'>
       <img src={logo} alt='Karolina Król logo' width={'75%'} />
       <p>
         The issue might be related to how React updates the UI. While the artwork state is updated correctly in

@@ -12,7 +12,7 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, description, images = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const carouselItems = description ? [description, ...images] : images
+  const carouselItems = images
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselItems.length)
@@ -33,9 +33,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, description, images = []
           onClick={onClose}>
           <motion.div
             className='modal-content'
-            initial={{ scale: 0.5, y: 100 }}
-            animate={{ scale: 1, y: 0 }}
-            exit={{ scale: 0.5, y: 100 }}
+            initial={{ y: 100 }}
+            animate={{ y: 0 }}
+            exit={{ y: 100 }}
             transition={{ type: 'spring', damping: 20, stiffness: 300 }}
             onClick={(e) => e.stopPropagation()}>
             <div className='carousel'>
@@ -45,13 +45,13 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, description, images = []
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
                 className='carousel-item'>
-                {typeof carouselItems[currentIndex] === 'string' && carouselItems[currentIndex].startsWith('http') ? (
-                  <img src={carouselItems[currentIndex]} alt={`Slide ${currentIndex}`} className='carousel-image' />
-                ) : (
-                  <p className='carousel-description'>{carouselItems[currentIndex]}</p>
-                )}
+                <img src={carouselItems[currentIndex]} alt={`Slide ${currentIndex}`} className='carousel-image' />
               </motion.div>
             </div>
+
+            {/* Description */}
+            <div className='description marquee'>{description && <span>{description}</span>}</div>
+
             {/* Buttons */}
             <motion.button
               className='close-button'

@@ -17,8 +17,6 @@
 .modal-content {
   margin: 20px;
   padding: 20px;
-  /* border-radius: 5px; */
-  /* position: relative; */
 }
 
 .close-button {
@@ -67,12 +65,6 @@
   overflow: hidden;
 }
 
-.carousel-description {
-  text-align: center;
-  font-size: 16px;
-  color: #333;
-}
-
 .carousel-counter {
   position: absolute;
   top: 10px;
@@ -101,4 +93,42 @@
   font-size: 24px;
   cursor: pointer;
   color: black;
+}
+
+.description {
+  position: absolute;
+  bottom: 48px;
+  font-size: 24px;
+  cursor: pointer;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+.marquee {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(0%, 0);
+  }
+  50% {
+    transform: translate(-100%, 0);
+  }
+  50.001% {
+    transform: translate(100%, 0);
+  }
+  100% {
+    transform: translate(0%, 0);
+  }
 }

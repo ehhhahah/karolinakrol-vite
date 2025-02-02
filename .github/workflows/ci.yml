@@ -1,0 +1,60 @@
+name: Build, Deploy & Validate Vite App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Build the Vite app
+      - name: Build Vite app
+        run: npm run build
+
+      # Step 5: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: dist
+
+      # Step 6: Validate JSON file
+      - name: Validate JSON file
+        run: |
+          JSON_FILE="public/data/artworkData.json"
+          jq empty $JSON_FILE || (echo "Invalid JSON file!" && exit 1)
+
+      # Step 7: Check links in the JSON file
+      - name: Check links in JSON file
+        run: |
+          JSON_FILE="public/data/artworkData.json"
+          LINKS=$(jq -r '.src[]' $JSON_FILE)
+
+          for LINK in $LINKS; do
+            HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" $LINK)
+            if [[ $HTTP_STATUS -ne 200 ]]; then
+              echo "Warning: $LINK returned HTTP $HTTP_STATUS"
+            else
+              echo "Valid: $LINK returned HTTP 200"
+            fi
+          done

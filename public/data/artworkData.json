@@ -1,140 +1,186 @@
 [
-    {
-      "src": "https://i.ibb.co/hm1L21Q/baba-2.jpg",
-      "alt": "Artwork 2",
-      "category": "illustrations",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/7kKvMF7/gwgwinst.jpg",
-      "alt": "Artwork 2",
-      "category": "illustrations",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/C2xC9MP/ig-kwiaty-bniom.jpg",
-      "alt": "Artwork 2",
-      "category": "illustrations",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/ZfyYwmx/obrazek.jpg",
-      "alt": "Artwork 2",
-      "category": "illustrations",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/0Z2C166/Screenshot-2024-11-05-at-19-19-38.png",
-      "alt": "Artwork 2",
-      "category": "illustrations",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/8c8WzC6/waz-2.jpg",
-      "alt": "Artwork 2",
-      "category": "illustrations",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/njBxYVy/rosa-vertov-1.jpg",
-      "alt": "Artwork 2",
-      "category": "posters",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/kH76QDm/rosa-vertov-2.jpg",
-      "alt": "Artwork 2",
-      "category": "posters",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/bb0FgWQ/rosa-vertov-3.jpg",
-      "alt": "Artwork 2",
-      "category": "posters",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/YhL5pzf/rosa-vertov-4.jpg",
-      "alt": "Artwork 2",
-      "category": "posters",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/RTtmqbk/plakat-A3-2.jpg",
-      "alt": "Artwork 2",
-      "category": "posters",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/q1hX2JC/Screenshot-2024-11-05-at-19-33-56.png",
-      "alt": "Artwork 2",
-      "category": "posters",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/njBxYVy/rosa-vertov-1.jpg",
-      "alt": "Artwork 2",
-      "category": "posters",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/pQmh00f/grafika-1080x1080-instagram.jpg",
-      "alt": "Artwork 2",
-      "category": "posters",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/T0cF1wt/IMG-0374-copy-2.jpg",
-      "alt": "Artwork 2",
-      "category": "posters",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/1fx7Xc2/photka.jpg",
-      "alt": "Artwork 2",
-      "category": "posters",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/3hx65kQ/Screenshot-2024-11-05-at-19-33-04.png",
-      "alt": "Artwork 2",
-      "category": "posters",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/FxRxH5x/Screenshot-2024-11-05-at-19-33-25.png",
-      "alt": "Artwork 2",
-      "category": "posters",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/qrbVvmS/IMG-4830.jpg",
-      "alt": "Artwork 2",
-      "category": "publications",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/xYsFDz3/ksiazka-0.jpg",
-      "alt": "Artwork 2",
-      "category": "publications",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/d7P48fc/ksiazka-1.jpg",
-      "alt": "Artwork 2",
-      "category": "publications",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/cQtcKfk/ksiazka-2.jpg",
-      "alt": "Artwork 2",
-      "category": "publications",
-      "description": "Lorem ipsum"
-    },
-    {
-      "src": "https://i.ibb.co/0q63cNd/ksiazka-3.jpg",
-      "alt": "Artwork 2",
-      "category": "publications",
-      "description": "Lorem ipsum"
-    }
-  ]
+  {
+    "src": [
+      "https://i.ibb.co/hm1L21Q/baba-2.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "illustrations",
+    "description": "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum."
+  },
+  {
+    "src": [
+      "https://i.ibb.co/7kKvMF7/gwgwinst.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "illustrations",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/C2xC9MP/ig-kwiaty-bniom.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "illustrations",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/ZfyYwmx/obrazek.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "illustrations",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/0Z2C166/Screenshot-2024-11-05-at-19-19-38.png"
+    ],
+    "alt": "Artwork 2",
+    "category": "illustrations",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/8c8WzC6/waz-2.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "illustrations",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/njBxYVy/rosa-vertov-1.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "posters",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/kH76QDm/rosa-vertov-2.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "posters",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/bb0FgWQ/rosa-vertov-3.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "posters",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/YhL5pzf/rosa-vertov-4.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "posters",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/RTtmqbk/plakat-A3-2.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "posters",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/q1hX2JC/Screenshot-2024-11-05-at-19-33-56.png"
+    ],
+    "alt": "Artwork 2",
+    "category": "posters",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/njBxYVy/rosa-vertov-1.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "posters",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/pQmh00f/grafika-1080x1080-instagram.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "posters",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/T0cF1wt/IMG-0374-copy-2.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "posters",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/1fx7Xc2/photka.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "posters",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/3hx65kQ/Screenshot-2024-11-05-at-19-33-04.png"
+    ],
+    "alt": "Artwork 2",
+    "category": "posters",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/FxRxH5x/Screenshot-2024-11-05-at-19-33-25.png"
+    ],
+    "alt": "Artwork 2",
+    "category": "posters",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/qrbVvmS/IMG-4830.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "publications",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/xYsFDz3/ksiazka-0.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "publications",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/d7P48fc/ksiazka-1.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "publications",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/cQtcKfk/ksiazka-2.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "publications",
+    "description": "Lorem ipsum"
+  },
+  {
+    "src": [
+      "https://i.ibb.co/0q63cNd/ksiazka-3.jpg"
+    ],
+    "alt": "Artwork 2",
+    "category": "publications",
+    "description": "Lorem ipsum"
+  }
+]
