@@ -8,5 +8,12 @@ import Sitemap from 'vite-plugin-sitemap'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), VitePWA(), lqip(), ViteImageOptimizer(), robots(), Sitemap({ hostname: 'TODO' })]
+  plugins: [
+    react(),
+    VitePWA(),
+    lqip(),
+    ViteImageOptimizer()
+    // robots()
+    //  Sitemap({ hostname: 'TODO' })
+  ]
 })
