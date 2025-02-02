@@ -21,6 +21,7 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
   const dragControls = useRef({ startX: 0, startY: 0 })
   const imageRef = useRef<HTMLImageElement>(null)
   const [play] = useSound(SOUND_1_URL)
+  const [lastTap, setLastTap] = useState(0) // For double tap detection
 
   // Generate unique animation parameters based on index
   const generateFloatingAnimation = (idx: number) => {
@@ -76,6 +77,25 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
     }
   }
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0]
+    setIsDragging(true)
+    dragControls.current = {
+      startX: touch.clientX - position.x,
+      startY: touch.clientY - position.y
+    }
+
+    // Double tap detection
+    const now = Date.now()
+    const timeSinceLastTap = now - lastTap
+    if (timeSinceLastTap < 300) { // 300ms between taps
+      handleOpen()
+    }
+    setLastTap(now)
+
+    e.preventDefault()
+  }
+
   const handleMouseMove = (e: React.MouseEvent) => {
     if (isDragging) {
       setPosition({
@@ -85,8 +105,6 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
       e.preventDefault()
     }
   }
-
-  const handleMouseUp = () => setIsDragging(false)
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (isDragging) {
@@ -99,10 +117,16 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
     }
   }
 
+  const handleMouseUp = () => setIsDragging(false)
+  const handleTouchEnd = () => setIsDragging(false)
+
   const handleOpen = () => {
-    setIsOpen(true)
-    play()
+    if (!isDragging) {
+      setIsOpen(true)
+      play()
+    }
   }
+
   const handleClose = () => {
     setIsOpen(false)
     play()
@@ -118,7 +142,8 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
             top: position.y,
             cursor: isDragging ? 'grabbing' : 'grab',
             zIndex: isDragging ? 1000 : 1,
-            userSelect: 'none'
+            userSelect: 'none',
+            touchAction: 'none' // Prevent scrolling while dragging
           }}
           animate={{
             scale: isDragging ? 1.1 : 1,
@@ -131,13 +156,23 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
-          onTouchMove={handleTouchMove}
           onMouseLeave={handleMouseUp}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
           onClick={handleOpen}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           key={index}>
-          <motion.img ref={imageRef} className='draggable-image' src={src} alt={alt} loading='lazy' draggable={false} />
+          <motion.img
+            ref={imageRef}
+            className='draggable-image'
+            src={src}
+            alt={alt}
+            loading='lazy'
+            draggable={false}
+            style={{ touchAction: 'none' }} // Prevent scrolling while dragging
+          />
         </motion.div>
       )}
 

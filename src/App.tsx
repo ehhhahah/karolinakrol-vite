@@ -5,11 +5,11 @@ import kot from './assets/kot.png'
 import HomePage from './HomePage'
 import useSound from 'use-sound'
 
-const SOUND_1_URL = 'sounds/469066.wav'
+const SOUND_CAR_URL = 'sounds/729027.mp3'
 
 const App = () => {
   const [isAnimated, setIsAnimated] = useState(true)
-  const [play] = useSound(SOUND_1_URL)
+  const [play] = useSound(SOUND_CAR_URL)
 
   return (
     <div>
@@ -18,7 +18,7 @@ const App = () => {
         <img src={logo} alt='Karolina Król logo' />
       </div>
       <div className='cat' onClick={() => play()}>
-        <img src={kot} alt='cat' />
+        <img src={kot} alt='cat' onClick={() => play()} />
       </div>
       {/* <div className='toggle-animations'>
         <label>

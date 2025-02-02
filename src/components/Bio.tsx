@@ -8,11 +8,9 @@ const Bio: React.FC = () => {
     <div className='text-panel'>
       <img src={logo} alt='Karolina Król logo' width={'75%'} />
       <p>
-        The issue might be related to how React updates the UI. While the artwork state is updated correctly in
-        handleModeChange, React might not always immediately re-render the component to reflect the change. Here are
-        some ways to address this:
+        Born in 1994 in Warsaw, where they currently live and work.. Graduated from the Wojciech Gerson High School of Fine Arts in 2013 and obtained a Master’s degree in Graphics from the Academy of Fine Arts in Warsaw in 2022.
       </p>
-      <p>Lorem ipsum</p>
+      <p>Works mostly with graphic design, illustration and art books/zines. She is deeply engaged with the urgent issues of the global ecological crisis by focusing on the interconnectedness of all living beings and critiquing both anthropocentric and biocentric worldviews. Most of her projects aim to dissolve the dichotomy between human/nature and subject/object, emphasizing the importance of small, deliberate actions. She seeks to renew the connection between humans and nonhuman beings, to rediscover our essential ties to ecosystems and rethink our role within the intricate matrix of ecological interrelations under the weight of capitalism.</p>
 
       <br />
       <img src={contact} alt='Contact' width={'30%'} />
