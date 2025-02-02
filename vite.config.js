@@ -15,5 +15,6 @@ export default defineConfig({
     ViteImageOptimizer()
     // robots()
     //  Sitemap({ hostname: 'TODO' })
-  ]
+  ],
+  base: 'https://ehhhahah.github.io/karolinakrol-vite/'
 })
