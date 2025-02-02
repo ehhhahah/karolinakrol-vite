@@ -34,7 +34,7 @@ h2 {
 }
 
 .draggable-image {
-  width: 200px;
+  width: 150px;
   height: auto;
   cursor: grab;
   opacity: 90%;

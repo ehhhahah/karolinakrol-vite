@@ -9,8 +9,8 @@ interface DraggableImageProps {
   src: string
   alt: string
   description: string
-  index: number // Add index prop for staggered animations
-  isVisible?: boolean // For filtering
+  index: number
+  isVisible?: boolean
 }
 
 const DraggableImage: React.FC<DraggableImageProps> = ({ src, alt, description, index, isVisible = true }) => {
@@ -132,18 +132,7 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, alt, description, 
       )}
 
       <AnimatePresence>
-        {isOpen && (
-          <Modal isOpen={isOpen} onClose={handleClose} description={description}>
-            <motion.img
-              src={src}
-              alt={alt}
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.5, opacity: 0 }}
-              transition={{ type: 'spring', damping: 15 }}
-            />
-          </Modal>
-        )}
+        {isOpen && <Modal isOpen={isOpen} onClose={handleClose} description={description} images={[src, src]} />}
       </AnimatePresence>
     </AnimatePresence>
   )
