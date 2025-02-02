@@ -1,0 +1,23 @@
+.artwork-list {
+  width: 100%;
+  text-overflow: ellipsis;
+}
+
+.artwork-item {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.artwork-thumbnail img {
+  width: 50px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.artwork-info {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

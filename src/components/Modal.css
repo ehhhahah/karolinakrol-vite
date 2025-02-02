@@ -1,0 +1,134 @@
+/* src/components/Modal.css */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px); /* Apply blur effect */
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  align-items: normal;
+}
+
+.modal-content {
+  margin: 20px;
+  padding: 20px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.close-button-img {
+  width: 24px;
+  height: 24px;
+}
+
+.carousel-image {
+  box-shadow: 0px 0px 40px 2px black;
+}
+
+@media (orientation: portrait) {
+  .carousel-image {
+    width: 90vw;
+    height: auto;
+  }
+}
+
+@media (orientation: landscape) {
+  .carousel-image {
+    height: 90vh;
+    width: auto;
+  }
+}
+
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-counter {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.prev-button {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: black;
+}
+
+.next-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: black;
+}
+
+.description {
+  position: absolute;
+  bottom: 48px;
+  font-size: 24px;
+  cursor: pointer;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+.marquee {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(0%, 0);
+  }
+  50% {
+    transform: translate(-100%, 0);
+  }
+  50.001% {
+    transform: translate(100%, 0);
+  }
+  100% {
+    transform: translate(0%, 0);
+  }
+}
