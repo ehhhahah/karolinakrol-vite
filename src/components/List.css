@@ -15,7 +15,7 @@
 
 .artwork-thumbnail img {
   display: block;
-  width: 70px;
+  width: 200px;
   object-fit: cover;
   margin-right: 10px;
 }
@@ -25,6 +25,11 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.artwork-title {
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
 .category-group {

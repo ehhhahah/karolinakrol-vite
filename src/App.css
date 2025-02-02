@@ -37,7 +37,7 @@ h2 {
   width: 150px;
   height: auto;
   cursor: grab;
-  opacity: 90%;
+  opacity: 95%;
 }
 
 .draggable-image::hover {

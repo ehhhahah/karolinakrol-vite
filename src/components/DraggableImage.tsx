@@ -24,8 +24,8 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
 
   // Generate unique animation parameters based on index
   const generateFloatingAnimation = (idx: number) => {
-    const amplitude = 10 + (idx % 3) * 5 // Varies between 10-20px
-    const duration = 3 + (idx % 4) // Varies between 3-6s
+    const amplitude = 0 + (idx % 3) * 5 // in px
+    const duration = 12 + (idx % 4) // In seconds
     const delay = (idx % 5) * 0.2 // Staggered start
 
     const paths = [
@@ -88,13 +88,24 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
 
   const handleMouseUp = () => setIsDragging(false)
 
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (isDragging) {
+      const touch = e.touches[0]
+      setPosition({
+        x: touch.clientX - dragControls.current.startX,
+        y: touch.clientY - dragControls.current.startY
+      })
+      e.preventDefault()
+    }
+  }
+
   const handleOpen = () => {
     setIsOpen(true)
-    // play()
+    play()
   }
   const handleClose = () => {
     setIsOpen(false)
-    // play()
+    play()
   }
 
   return (
@@ -109,20 +120,18 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
             zIndex: isDragging ? 1000 : 1,
             userSelect: 'none'
           }}
-          initial={{ opacity: 0.5, scale: 0.9 }}
           animate={{
-            opacity: 1,
             scale: isDragging ? 1.1 : 1,
             ...(!isDragging ? generateFloatingAnimation(index) : {})
           }}
           exit={{
             scale: 0.9,
-            opacity: 0.5,
             transition: { duration: 0.5 }
           }}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
+          onTouchMove={handleTouchMove}
           onMouseLeave={handleMouseUp}
           onClick={handleOpen}
           whileHover={{ scale: 1.05 }}

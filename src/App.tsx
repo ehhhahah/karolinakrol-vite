@@ -20,12 +20,12 @@ const App = () => {
       <div className='cat' onClick={() => play()}>
         <img src={kot} alt='cat' />
       </div>
-      <div className='toggle-animations'>
+      {/* <div className='toggle-animations'>
         <label>
           <input type='checkbox' checked={isAnimated} onChange={(e) => setIsAnimated(e.target.checked)} />
           Animate
         </label>
-      </div>
+      </div> */}
     </div>
   )
 }
