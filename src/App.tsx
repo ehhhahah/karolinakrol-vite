@@ -9,7 +9,7 @@ const MainContent = () => {
   return (
     <Routes>
       <Route path="/*" element={<HomePage isList={false} />} />
-      <Route path="/works" element={<HomePage isList={true} />} />
+      <Route path="/works/*" element={<HomePage isList={true} />} />
     </Routes>
   )
 }
