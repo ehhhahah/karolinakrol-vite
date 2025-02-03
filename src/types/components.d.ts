@@ -3,5 +3,6 @@ export interface Artwork {
     alt: string
     category: string
     description: string
+    id: string
 }
 

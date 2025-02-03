@@ -5,10 +5,8 @@ import List from './components/List'
 import ArtworkContainer from './components/ArtworkContainer'
 import { Artwork } from './types/components'
 import Navigation from './components/Navigation'
+import getArtworksData from './utils/getArtworksData'
 
-
-// For JSON in public folder
-const ARTWORK_DATA_URL = '/data/artworkData.json'
 
 interface HomePageProps {
   isList: boolean
@@ -28,8 +26,7 @@ const HomePage: React.FC<HomePageProps> = ({ isList }) => {
     const loadArtwork = async () => {
       setIsLoading(true)
       try {
-        const response = await fetch(ARTWORK_DATA_URL)
-        const data = await response.json()
+        const data = await getArtworksData()
         setArtwork(data)
       } catch (error) {
         console.error('Error loading artwork data:', error)

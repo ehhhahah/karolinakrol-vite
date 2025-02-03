@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './../styles/List.css'
 import Modal from './Modal' // assuming you have a Modal component
 import getModePicture from '../utils/getModePicture'
-
-const ARTWORK_DATA_URL = '/data/artworkData.json'
+import getArtworksData from '../utils/getArtworksData'
 
 type Artwork = {
   src: string[]
@@ -22,8 +21,7 @@ const ArtworkList: React.FC = () => {
     const loadArtwork = async () => {
       setIsLoading(true)
       try {
-        const response = await fetch(ARTWORK_DATA_URL)
-        const data = await response.json()
+        const data = await getArtworksData()
         setArtwork(data)
       } catch (error) {
         console.error('Error loading artwork data:', error)
