@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence, PanInfo } from 'framer-motion'
-import './Modal.css'
+import './../styles/Modal.css'
 import xIcon from './../assets/x.png'
 
 interface ModalProps {

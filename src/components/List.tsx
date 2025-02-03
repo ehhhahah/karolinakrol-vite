@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './List.css'
+import './../styles/List.css'
 import Modal from './Modal' // assuming you have a Modal component
 import getModePicture from '../utils/getModePicture'
 
