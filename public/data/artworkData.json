@@ -157,5 +157,15 @@
      "alt": "Artwork puszka kawy",
      "category": "illustrations",
      "description": "Illustration for coffe packaging for Crush KRK cafe and Pale KRK coffe roastery both located in Krakow."
-   }
-    ]
+   },
+   {
+     "src": [
+       "https://i.ibb.co/hRNP8Dk3/TOOOOO.png",
+       "https://i.ibb.co/YFG3cFFf/zin-3-copy.jpg",
+       "https://i.ibb.co/gb71Stsb/zin-4-copy.jpg"
+     ],
+      "alt": "zines zolty"
+      "category": "publications",
+      "description": "Risoprinted ilustrated zine, a7"
+    }
+     ]
