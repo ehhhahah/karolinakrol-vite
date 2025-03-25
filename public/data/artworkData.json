@@ -109,11 +109,53 @@
   },
   {
     "src": [ 
-      "https://i.ibb.co/27c1LKGj/zin-ig-copy.jpg",
-      "https://i.ibb.co/FdwdBQ1/zin-ig-4-copy.jpg"
+      "https://i.ibb.co/rK6FSGmn/zin-ig-copy.png",
+      "https://i.ibb.co/39N4Cm4P/zin-ig-4.png",
+      "https://i.ibb.co/ymPFX6s0/zin-ig-5.png",
+      "https://i.ibb.co/jZvSthDx/zin-ig-22.png",
+      "https://i.ibb.co/M5fzCMJ3/zin-ig-3.png",
+      "https://i.ibb.co/qMkTZxWV/Skan-20-copy.jpg"
    ],
     "alt": "Zine",
     "category": "publications",
-    "description": "zine Prophecy published by local risoprinthing press and publisher Oficyna Peryferie. Prophecy is a story of a tarot reading in which mysterious creatures face an inevitable fate. It delves into the co-creation of reality through the mutual experience of all living things, emphasizing the intercon nectedness and coexistence of humans and non-human beings."
+    "description": "Zine Prophecy published by local risoprinthing press and publisher Oficyna Peryferie. Prophecy is a story of a tarot reading in which mysterious creatures face an inevitable fate. It delves into the co-creation of reality through the mutual experience of all living things, emphasizing the intercon nectedness and coexistence of humans and non-human beings."
+  },
+  {
+    "src": [ 
+      "https://i.ibb.co/k2WL6Cm3/ilustracja-16-copy-2.jpg"
+   ],
+    "alt": "Artwork 2",
+    "category": "illustrations", 
+    "description": "Ink on paper, Illustration, 2021"
+  },
+  {
+    "src": [ 
+    "https://i.ibb.co/qLPwcMyr/epidermis-1080x1080-2.jpg",
+    "https://i.ibb.co/Z4WGrP1/20230303-010409730-i-OS.jpg",
+    "https://i.ibb.co/G4wH87CH/2-mock-up-barcelona-copy.jpg"
+   ],
+    "alt": "Artwork 2",
+    "category": "posters", 
+    "description": "Visual identity (poster, brochure, and web graphics) for the Epidermis audiovisual exhibition in CSW Łaźnia Gallery in Gdynia in 2022. The project aimes to explore relationship between humans and plants,focused on observing and studying plants through small, subtle gestures, touch and sounds. It uncovers the fragile interconnectedness that blurs the line between humanity and the natural world."
+  },
+  {
+    "src": [ 
+      "https://i.ibb.co/Y4kbfRrM/plakat-internet-4.jpg",
+      "https://i.ibb.co/mVCWdfQ1/plakat-internet-1.jpg",
+      "https://i.ibb.co/zhXzqyM7/sylwester-w-igno-fb.jpg"
+   ],
+    "alt": "Artwork 2",
+    "category": "posters", 
+    "description": "Poster design for the New Year's Eve event at Ignorantka Bar, 2024"
+   },
+   {
+     "src": [
+       "https://i.ibb.co/XkCz884g/poziom-copy.jpg",
+       "https://i.ibb.co/xKqCZMmK/poziom-copy2.jpg",
+       "https://i.ibb.co/TBfkfxJS/Zrzut-ekranu-2025-03-24-o-21-33-31-copy.jpg"
+    ],
+     "alt": "Artwork puszka kawy"
+     "category": "illustrations",
+     "description": "Illustration for coffe packaging for Crush KRK cafe and Pale KRK coffe roastery both located in Krakow."
    }
     ]
