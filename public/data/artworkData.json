@@ -180,6 +180,27 @@
       "alt": "kotek_rysunek",
       "category": "illustration",
       "description": "pencil on paper, a7"
+    },
+    {
+     "src": [
+       "https://i.ibb.co/5WvrQsNS/kw-01-kontrast.jpg"
+     ],
+      "alt": "rysunek_kwiat",
+      "category": "illustration",
+      "description": "crayons on paper, a7"
+    },
+    {
+     "src": [
+       "https://i.ibb.co/XPXLXhv/3sprawiedliwosc.jpg",
+       "https://i.ibb.co/27VjxDW7/5kolofortuny.jpg",
+       "https://i.ibb.co/21YXsQKZ/1sila.jpg",
+       "https://i.ibb.co/PZrTPJXz/6kochankowie.jpg",
+       "https://i.ibb.co/c48WPx9/2eremita.jpg",
+       "https://i.ibb.co/jZRhKj0P/4slonce-copy.jpg"
+     ],
+      "alt": "dyplom",
+      "category": "illustration",
+      "description": "silksprint, 50x70cm"
     }
      ]
 
