@@ -210,6 +210,63 @@
       "alt": "zin__czerwony",
       "category": "publications",
       "description": "risoprinted zine"
+    },
+    {
+     "src": [
+       "https://i.ibb.co/XfnRFktY/Skan-11-copy-2.jpg",
+       "hhttps://i.ibb.co/JRr2dwzR/Skan-12-copy-2.jpg"
+     ],
+      "alt": "preetone",
+      "category": "poster",
+      "description": "music poster A4"
+    },
+    {
+     "src": [
+       "https://i.ibb.co/xK9dVzvg/trikster-co555tpy.jpg",
+       "https://i.ibb.co/RmHn4RZ/trikster-co3py.jpg",
+       "https://i.ibb.co/GvbQkF61/trikster-c22opy.jpg",
+       "https://i.ibb.co/n8Z5NC0W/trikster-copy.jpg"
+     ],
+      "alt": "trickster",
+      "category": "poster",
+      "description": "Trickster poster"
+   },
+    {
+     "src": [
+       "https://i.ibb.co/1JX3y0qn/pozegnania2.jpg",
+       "https://i.ibb.co/HT2SCQNx/pozegnania1.jpg",
+       "https://i.ibb.co/s9vwnL13/pozegnania3.jpg"
+     ],
+      "alt": "pozegnania",
+      "category": "poster",
+      "description": "cykl filmowy pozegnania poster"
+   },
+    {
+     "src": [
+       "https://i.ibb.co/MxK3yhXP/mistrzowie.jpg",
+       "https://i.ibb.co/FLh307Cd/portfolio-gr-11-copy.jpg"
+     ],
+      "alt": "skolimowski",
+      "category": "poster",
+      "description": "jerzy skolimowski event"
+     },
+    {
+     "src": [
+       "https://i.ibb.co/NnrW1DwS/morgerstern.jpg",
+       "https://i.ibb.co/67df55vx/portfolio-gr-14-02-copy.jpg"
+     ],
+      "alt": "morgerstern",
+      "category": "poster",
+      "description": "morgenstern event"
+    },
+    {
+     "src": [
+       "https://i.ibb.co/sdVQX6Yt/IMG-4993-copy.jpg",
+       "https://i.ibb.co/S49d7B8W/IMG-4987-copy-pracownia.jpg"
+     ],
+      "alt": "sito",
+      "category": "illustration",
+      "description": "silkprint 50x70cm"
     }
      ]
 
