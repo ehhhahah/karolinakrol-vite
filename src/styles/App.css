@@ -42,10 +42,23 @@ h2 {
   opacity: 100%;
 }
 
+.draggable-image.loaded {
+  filter: none;
+  transition: filter 400ms ease-out, opacity 200ms ease-out;
+}
+
+.thumbnail-preview {
+  filter: blur(10px);
+  opacity: 0.5;
+  z-index: 0;
+  background-color: #eee;
+  transition: filter 400ms ease-out, opacity 200ms ease-out;
+}
+
 .navbar {
   position: fixed;
   top: 0;
-  z-index: 1000;
+  z-index: 900;
 }
 
 .navbar nav ul {
@@ -168,7 +181,7 @@ h2 {
 .burger-menu-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 70%;
   z-index: 200;
   height: 100vh;
 }
@@ -180,7 +193,9 @@ h2 {
 }
 
 .burger-open {
-  background-color: #ffffffcc;
+  background-color: #ffffff;
+  mask-image: linear-gradient(to right, white, #ae656500);
+  padding-right: 70%;
 }
 
 .artwork-container {

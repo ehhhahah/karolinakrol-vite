@@ -63,6 +63,30 @@
   overflow: hidden;
 }
 
+.text-modal-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  flex-direction: column;
+  padding: 20px;
+  margin: 20px;
+}
+
+.text-modal-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.text-modal-desc {
+  font-size: 16px;
+  text-align: justify;
+}
+
 .carousel-counter {
   position: absolute;
   top: 10px;
@@ -91,6 +115,23 @@
   font-size: 24px;
   cursor: pointer;
   color: black;
+}
+
+.left-arrow,
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.left-arrow {
+  left: 5px;
+}
+
+.right-arrow {
+  right: 5px;
 }
 
 .description {

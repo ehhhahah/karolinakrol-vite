@@ -1,19 +1,86 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence, PanInfo } from 'framer-motion'
 import './../styles/Modal.css'
 import xIcon from './../assets/x.png'
+import lewoStrzalka from './../assets/lewo_strzalka.png'
+import prawoStrzalka from './../assets/prawo_strzalka.png'
+
 
 interface ModalProps {
   isOpen: boolean
   onClose: () => void
+  title: string
   description?: string
   images?: string[]
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, description, images = [] }) => {
+const getDescriptionCarouselItem = (title: string, description: string | undefined) => {
+  return (
+    <div className='carousel-item text-modal-item'>
+      <h2 className='text-modal-title'>{title}</h2>
+      {description && <p className='text-modal-desc'>{description}</p>}
+    </div>
+  )
+}
+
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, description, images = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const carouselItems = images
+  const [imagesLoaded, setImagesLoaded] = useState(false)
+  const carouselItems = [getDescriptionCarouselItem(title, description), ...images]
   const swipeThreshold = 50 // minimum distance to trigger slide change
+
+  // Preload images when modal opens
+  // TODO implement caching for images within the modal
+  useEffect(() => {
+    if (isOpen && images.length > 0) {
+      let loadedCount = 0
+      const imagePromises = images.map((src) => {
+        return new Promise<void>((resolve) => {
+          const img = new Image()
+          img.onload = () => {
+            loadedCount++
+            if (loadedCount === images.length) {
+              setImagesLoaded(true)
+            }
+            resolve()
+          }
+          img.onerror = () => {
+            loadedCount++
+            if (loadedCount === images.length) {
+              setImagesLoaded(true)
+            }
+            resolve()
+          }
+          img.src = src
+        })
+      })
+
+      // Consider all images loaded after a timeout as fallback
+      const timeoutId = setTimeout(() => {
+        if (!imagesLoaded) {
+          setImagesLoaded(true)
+        }
+      }, 5000) // 5 seconds timeout
+
+      Promise.all(imagePromises).then(() => {
+        clearTimeout(timeoutId)
+        setImagesLoaded(true)
+      })
+
+      return () => {
+        clearTimeout(timeoutId)
+      }
+    }
+  }, [isOpen, images])
+
+  useEffect(() => {
+    // Reset current index and loaded state when modal closes
+    if (!isOpen) {
+      setCurrentIndex(0)
+      setImagesLoaded(false)
+    }
+  }, [isOpen])
+
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselItems.length)
@@ -65,17 +132,34 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, description, images = []
                 dragElastic={0.7}
                 onDragEnd={handleDragEnd}
                 style={{ touchAction: 'none' }}>
-                <img
-                  src={carouselItems[currentIndex]}
-                  alt={`Slide ${currentIndex}`}
-                  className='carousel-image'
-                  draggable={false} // Prevent default image dragging
-                />
+
+                {/* Display the description or image based on the current index */
+                  currentIndex === 0 ? (
+                    <>
+                      {carouselItems[currentIndex]}
+                      {/* If computer view, display first image next to description */}
+                      {images.length > 1 && currentIndex + 1 < carouselItems.length && window.innerWidth > 768 &&
+                        <img
+                          src={carouselItems[currentIndex + 1]}
+                          alt={`Slide ${currentIndex}`}
+                          className='carousel-image'
+                          draggable={false} // Prevent default image dragging
+                        />}
+                    </>
+
+                  ) : (
+                    <img
+                      src={carouselItems[currentIndex]}
+                      alt={`Slide ${currentIndex}`}
+                      className='carousel-image'
+                      draggable={false} // Prevent default image dragging
+                    />
+                  )}
               </motion.div>
             </div>
 
             {/* Description */}
-            <div className='description marquee'>{description && <span>{description}</span>}</div>
+            {/* <div className='description marquee'>{description && <span>{description}</span>}</div> */}
 
             {/* Buttons */}
             <motion.button
@@ -88,6 +172,20 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, description, images = []
 
             {images.length > 1 && (
               <>
+                <>
+                  <img
+                    src={lewoStrzalka}
+                    alt="Previous"
+                    className="left-arrow"
+                    onClick={prevSlide}
+                  />
+                  <img
+                    src={prawoStrzalka}
+                    alt="Next"
+                    className="right-arrow"
+                    onClick={nextSlide}
+                  />
+                </>
                 <motion.button
                   className='prev-button'
                   onClick={prevSlide}

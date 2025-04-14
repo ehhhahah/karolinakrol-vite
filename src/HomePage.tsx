@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useNavigate, useLocation, Routes, Route } from 'react-router-dom'
 import Bio from './components/Bio'
 import List from './components/List'
@@ -22,7 +22,20 @@ const HomePage: React.FC<HomePageProps> = ({ isList }) => {
   const location = useLocation()
   const currentMode = location.pathname.slice(1) || 'home'
 
+  const navigationRef = useRef<HTMLDivElement>(null)
+
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    // Only run this when isBurgerOpen is true (menu is open)
+    if (!isBurgerOpen) return;
+
+    if (navigationRef.current || (navigationRef.current !== event.target)) {
+      setBurgerOpen(false)
+    }
+  }, [isBurgerOpen]);
+
   useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside)
+
     const loadArtwork = async () => {
       setIsLoading(true)
       try {
@@ -36,7 +49,11 @@ const HomePage: React.FC<HomePageProps> = ({ isList }) => {
     }
 
     loadArtwork()
-  }, [])
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [handleClickOutside])
 
   const handleModeChange = useCallback((newMode: string) => {
     if (isList) {
@@ -53,8 +70,8 @@ const HomePage: React.FC<HomePageProps> = ({ isList }) => {
   }, [isList, currentMode, navigate])
 
   const toggleBurgerMenu = useCallback(() => {
-    setBurgerOpen(prev => !prev)
-  }, [])
+    setBurgerOpen(!isBurgerOpen);
+  }, [isBurgerOpen]);
 
   return (
     <div id='home-page'>
@@ -63,6 +80,7 @@ const HomePage: React.FC<HomePageProps> = ({ isList }) => {
         isBurgerOpen={isBurgerOpen}
         onModeChange={handleModeChange}
         onToggleBurger={toggleBurgerMenu}
+        ref={navigationRef}
       />
       <Routes>
         <Route path="bio" element={<Bio />} />

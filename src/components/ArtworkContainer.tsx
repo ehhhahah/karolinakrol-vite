@@ -14,6 +14,7 @@ const ArtworkContainer = memo(({ artwork, currentMode }: { artwork: Artwork[], c
                 description={image.description}
                 isVisible={image.category === currentMode || currentMode === 'home'}
                 index={index}
+                allow_delay={currentMode === 'home'}
             />
         ))}
     </div>
