@@ -48,8 +48,6 @@ h2 {
 }
 
 .thumbnail-preview {
-  filter: blur(10px);
-  opacity: 0.5;
   z-index: 0;
   background-color: #eee;
   transition: filter 400ms ease-out, opacity 200ms ease-out;

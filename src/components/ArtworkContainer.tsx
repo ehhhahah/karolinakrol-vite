@@ -8,11 +8,11 @@ const ArtworkContainer = memo(({ artwork, currentMode }: { artwork: Artwork[], c
         {artwork.map((image, index) => (
             <DraggableImage
                 key={index}
-                src={image.src[0]}
-                other_srcs={image.src.slice(1)}
+                src={image.thumbnail}
+                other_srcs={image.src}
                 alt={image.alt}
                 description={image.description}
-                isVisible={image.category === currentMode || currentMode === 'home'}
+                isVisible={image.category === currentMode || (currentMode === 'home' && image.isOnHomepage)}
                 index={index}
                 allow_delay={currentMode === 'home'}
             />

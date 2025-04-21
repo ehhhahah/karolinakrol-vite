@@ -16,7 +16,7 @@ interface DraggableImageProps {
   allow_delay?: boolean
 }
 
-const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, description, index, isVisible = true, allow_delay = true }) => {
+const DraggableImage: React.FC<DraggableImageProps> = ({ src: thumbnail_src, other_srcs, alt, description, index, isVisible = true, allow_delay = true }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
   const [position, setPosition] = useState({ x: 0, y: 0 })
@@ -24,6 +24,8 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
   const imageRef = useRef<HTMLImageElement>(null)
   const [play] = useSound(SOUND_1_URL)
   const [lastTap, setLastTap] = useState(0) // For double tap detection
+  const lastDragTime = useRef(0) // Track when dragging ended
+  const hasMoved = useRef(false) // Track if there was actual movement during drag
 
   // Generate unique animation parameters based on index
   const generateFloatingAnimation = (idx: number) => {
@@ -70,6 +72,7 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (e.button === 0) {
+      hasMoved.current = false;
       setIsDragging(true)
       dragControls.current = {
         startX: e.clientX - position.x,
@@ -81,6 +84,7 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
 
   const handleTouchStart = (e: React.TouchEvent) => {
     const touch = e.touches[0]
+    hasMoved.current = false;
     setIsDragging(true)
     dragControls.current = {
       startX: touch.clientX - position.x,
@@ -100,6 +104,7 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (isDragging) {
+      hasMoved.current = true;
       setPosition({
         x: e.clientX - dragControls.current.startX,
         y: e.clientY - dragControls.current.startY
@@ -110,6 +115,7 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (isDragging) {
+      hasMoved.current = true;
       const touch = e.touches[0]
       setPosition({
         x: touch.clientX - dragControls.current.startX,
@@ -119,11 +125,30 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
     }
   }
 
-  const handleMouseUp = () => setIsDragging(false)
-  const handleTouchEnd = () => setIsDragging(false)
+  const handleMouseUp = () => {
+    if (isDragging) {
+      if (hasMoved.current) {
+        lastDragTime.current = Date.now();
+      }
+      setIsDragging(false);
+    }
+  }
+
+  const handleTouchEnd = () => {
+    if (isDragging) {
+      if (hasMoved.current) {
+        lastDragTime.current = Date.now();
+      }
+      setIsDragging(false);
+    }
+  }
 
   const handleOpen = () => {
-    if (!isDragging) {
+    // Allow opening if:
+    // 1. We're not currently dragging
+    // 2. Either no dragging has happened yet (lastDragTime.current is 0) 
+    //    or enough time has passed since the last drag ended
+    if (!isDragging && (lastDragTime.current === 0 || Date.now() - lastDragTime.current > 150)) {
       setIsOpen(true)
       play()
     }
@@ -166,7 +191,7 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           key={index}>
-          <ProgressiveImage src={src} placeholder={src} delay={allow_delay ? 400 * index : 0}>
+          <ProgressiveImage src={thumbnail_src} placeholder={thumbnail_src} delay={allow_delay ? 400 * index : 0}>
             {(src, loading) => <motion.img className={`lazyload draggable-image ${loading ? "thumbnail-preview" : "loaded"}`} ref={imageRef}
               loading='lazy'
               draggable={false}
@@ -178,7 +203,7 @@ const DraggableImage: React.FC<DraggableImageProps> = ({ src, other_srcs, alt, d
       )}
 
       <AnimatePresence>
-        {isOpen && <Modal isOpen={isOpen} onClose={handleClose} title={alt} description={description} images={[src, ...(other_srcs || [])]} />}
+        {isOpen && <Modal isOpen={isOpen} onClose={handleClose} title={alt} description={description} images={other_srcs || []} />}
       </AnimatePresence>
     </AnimatePresence>
   )

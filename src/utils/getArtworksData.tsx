@@ -16,7 +16,7 @@ const getArtworksData = async (): Promise<Artwork[]> => {
         return data.map((artwork, index) => ({
             ...artwork,
             id: `artwork-${index}`
-        }))
+        })).sort(() => Math.random() - 0.5)
     } catch (error) {
         console.error('Error fetching or processing artwork data:', error)
         throw error
