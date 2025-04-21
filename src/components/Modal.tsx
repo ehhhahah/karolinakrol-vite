@@ -81,7 +81,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, description, imag
     }
   }, [isOpen])
 
-
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselItems.length)
   }
@@ -89,6 +88,34 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, description, imag
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + carouselItems.length) % carouselItems.length)
   }
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!isOpen) return;
+
+      switch (event.key) {
+        case 'ArrowLeft':
+          prevSlide();
+          break;
+        case 'ArrowRight':
+          nextSlide();
+          break;
+        case 'Escape':
+          onClose();
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, prevSlide, nextSlide, onClose]);
+
+
 
   const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     if (carouselItems.length <= 1) return
@@ -119,7 +146,13 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, description, imag
             exit={{ opacity: 0 }}
             transition={{ type: 'spring', damping: 20, stiffness: 300 }}
             onClick={(e) => e.stopPropagation()}>
-            <div className='carousel'>
+            <motion.div
+              className='carousel'
+              drag={carouselItems.length > 1 ? "x" : false} // Enable drag for the entire carousel
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.7}
+              onDragEnd={handleDragEnd} // Handle drag end for all content
+            >
               <motion.div
                 key={currentIndex}
                 initial={{ opacity: 0, x: 0 }}
@@ -127,39 +160,30 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, description, imag
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
                 className='carousel-item'
-                drag={carouselItems.length > 1 ? "x" : false}
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.7}
-                onDragEnd={handleDragEnd}
-                style={{ touchAction: 'none' }}>
-
-                {/* Display the description or image based on the current index */
-                  currentIndex === 0 ? (
-                    <>
-                      {carouselItems[currentIndex]}
-                      {/* If computer view, display first image next to description */}
-                      {images.length > 1 && currentIndex + 1 < carouselItems.length && window.innerWidth > 768 &&
-                        <img
-                          src={carouselItems[currentIndex + 1]}
-                          alt={`Slide ${currentIndex}`}
-                          className='carousel-image'
-                          draggable={false} // Prevent default image dragging
-                        />}
-                    </>
-
-                  ) : (
-                    <img
-                      src={carouselItems[currentIndex]}
-                      alt={`Slide ${currentIndex}`}
-                      className='carousel-image'
-                      draggable={false} // Prevent default image dragging
-                    />
-                  )}
+              >
+                {/* Display the description or image based on the current index */}
+                {currentIndex === 0 ? (
+                  <>
+                    {carouselItems[currentIndex]}
+                    {/* If computer view, display first image next to description */}
+                    {images.length >= 1 && currentIndex + 1 < carouselItems.length && window.innerWidth > 768 &&
+                      <img
+                        src={carouselItems[currentIndex + 1]}
+                        alt={`Slide ${currentIndex}`}
+                        className='carousel-image next-to-text'
+                        draggable={false} // Prevent default image dragging
+                      />}
+                  </>
+                ) : (
+                  <img
+                    src={carouselItems[currentIndex]}
+                    alt={`Slide ${currentIndex}`}
+                    className='carousel-image'
+                    draggable={false} // Prevent default image dragging
+                  />
+                )}
               </motion.div>
-            </div>
-
-            {/* Description */}
-            {/* <div className='description marquee'>{description && <span>{description}</span>}</div> */}
+            </motion.div>
 
             {/* Buttons */}
             <motion.button
@@ -170,41 +194,37 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, description, imag
               <img src={xIcon} className='close-button-img' alt='Close' />
             </motion.button>
 
-            {images.length > 1 && (
-              <>
-                <>
-                  <img
-                    src={lewoStrzalka}
-                    alt="Previous"
-                    className="left-arrow"
-                    onClick={prevSlide}
-                  />
-                  <img
-                    src={prawoStrzalka}
-                    alt="Next"
-                    className="right-arrow"
-                    onClick={nextSlide}
-                  />
-                </>
-                <motion.button
-                  className='prev-button'
-                  onClick={prevSlide}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}>
-                  Prev
-                </motion.button>
-                <motion.button
-                  className='next-button'
-                  onClick={nextSlide}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}>
-                  Next
-                </motion.button>
-              </>
-            )}
+            <>
+              <img
+                src={lewoStrzalka}
+                alt="Previous"
+                className="left-arrow"
+                onClick={prevSlide}
+              />
+              <img
+                src={prawoStrzalka}
+                alt="Next"
+                className="right-arrow"
+                onClick={nextSlide}
+              />
+            </>
+            <motion.button
+              className='prev-button'
+              onClick={prevSlide}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}>
+              Prev
+            </motion.button>
+            <motion.button
+              className='next-button'
+              onClick={nextSlide}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}>
+              Next
+            </motion.button>
 
             <div className='carousel-counter'>
-              {currentIndex + 1} / {carouselItems.length}
+              {currentIndex} / {images.length}
             </div>
           </motion.div>
         </motion.div>

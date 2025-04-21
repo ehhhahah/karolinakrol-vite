@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px); /* Apply blur effect */
   display: flex;
   justify-content: center;
@@ -31,9 +31,9 @@
   height: 24px;
 }
 
-.carousel-image {
+/* .carousel-image {
   box-shadow: 0px 0px 40px 2px black;
-}
+} */
 
 @media (orientation: portrait) {
   .carousel-image {
@@ -53,6 +53,8 @@
   position: relative;
   display: flex;
   align-items: center;
+  height: 100%;
+  width: 100%;
 }
 
 .carousel-item {
@@ -67,11 +69,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  overflow: hidden;
+  width: 80%;
+  overflow: infitial;
   flex-direction: column;
   padding: 20px;
   margin: 20px;
+}
+
+.next-to-text {
+  width: 60%;
+  height: auto;
 }
 
 .text-modal-title {
@@ -142,31 +149,4 @@
   color: black;
   margin: 0;
   padding: 0;
-}
-
-.marquee {
-  white-space: nowrap;
-  overflow: hidden;
-  box-sizing: border-box;
-  display: inline-flex;
-  margin: 0;
-  padding: 0;
-
-  display: flex;
-  animation: marquee 10s linear infinite;
-}
-
-@keyframes marquee {
-  0% {
-    transform: translate(0%, 0);
-  }
-  50% {
-    transform: translate(-100%, 0);
-  }
-  50.001% {
-    transform: translate(100%, 0);
-  }
-  100% {
-    transform: translate(0%, 0);
-  }
 }
